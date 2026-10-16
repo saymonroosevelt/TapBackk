@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#081625">
+<title>Diagnóstico Gratuito | TapBack</title>
+<meta name="description" content="Descubra como melhorar o atendimento da sua empresa com o TapBack.">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #081625;
+  color: #f4f8fb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: min(100% - 32px, 580px);
+  margin: auto;
+  padding: 28px 0 50px;
+}
+
+.logo {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+}
+
+.logo span {
+  color: #41e3a2;
+}
+
+.card {
+  background: #10243a;
+  border: 1px solid #244058;
+  border-radius: 22px;
+  padding: 27px 22px;
+  box-shadow: 0 16px 45px rgba(0,0,0,.18);
+}
+
+.eyebrow {
+  color: #41e3a2;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(26px, 6vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin: 15px 0;
+}
+
+h2 {
+  font-size: 25px;
+  line-height: 1.25;
+  margin: 16px 0 22px;
+}
+
+p {
+  color: #b9c9d6;
+  line-height: 1.65;
+}
+
+.muted {
+  color: #92a8ba;
+  font-size: 13px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  color: #b9c9d6;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.progress {
+  height: 7px;
+  background: #263b50;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 20%;
+  background: #41e3a2;
+  border-radius: 99px;
+  transition: width .3s;
+}
+
+.options {
+  display: grid;
+  gap: 12px;
+}
+
+.option {
+  width: 100%;
+  padding: 17px;
+  background: #172e46;
+  border: 1px solid #304a60;
+  border-radius: 13px;
+  color: #f4f8fb;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.option:hover,
+.option:focus-visible {
+  border-color: #41e3a2;
+  background: #1d3b4e;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  padding: 17px;
+  background: #41e3a2;
+  border: none;
+  border-radius: 13px;
+  color: #06271d;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(.99);
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid #304a60;
+  color: #b9c9d6;
+  margin-top: 12px;
+}
+
+.result-box {
+  background: #0b302d;
+  border: 1px solid #247e64;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 22px 0;
+}
+
+.result-box strong {
+  display: block;
+  color: #60edb6;
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.result-box p {
+  margin-bottom: 0;
+}
+
+.plan-card {
+  border: 2px solid #41e3a2;
+  border-radius: 18px;
+  background: #132c3a;
+  padding: 23px 20px;
+  margin: 24px 0;
+}
+
+.plan-badge {
+  display: inline-block;
+  padding: 7px 11px;
+  background: #41e3a2;
+  color: #06271d;
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 99px;
+  letter-spacing: .5px;
+}
+
+.plan-name {
+  font-size: 27px;
+  font-weight: 800;
+  margin: 16px 0 5px;
+}
+
+.plan-price {
+  font-size: 35px;
+  font-weight: 800;
+  color: #41e3a2;
+  margin: 8px 0 18px;
+}
+
+.plan-price small {
+  font-size: 14px;
+  font-weight: 400;
+  color: #b9c9d6;
+}
+
+.plan-reason {
+  color: #d4e3eb;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.features {
+  padding: 0;
+  margin: 18px 0;
+  list-style: none;
+}
+
+.features li {
+  padding: 8px 0;
+  color: #d4e3eb;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.features li::before {
+  content: "✓ ";
+  color: #41e3a2;
+  font-weight: 800;
+}
+
+.notice {
+  font-size: 12px;
+  color: #91a9ba;
+  line-height: 1.6;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 24px;
+  color: #829aaf;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 400px) {
+  .card {
+    padding: 24px 18px;
+  }
+
+  .option {
+    padding: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+  <div class="logo">Tap<span>Back</span></div>
+
+  <!-- TELA INICIAL -->
+  <section class="card" id="intro">
+
+    <div class="eyebrow">
+      Diagnóstico gratuito
+    </div>
+
+    <h1>
+      Sua empresa pode estar perdendo clientes
+      sem perceber.
+    </h1>
+
+    <p>
+      Descubra se ligações perdidas e mensagens
+      sem resposta podem estar prejudicando
+      seu atendimento.
+    </p>
+
+    <p>
+      Responda <strong>5 perguntas rápidas</strong>
+      e descubra qual plano do TapBack pode
+      combinar com sua empresa.
+    </p>
+
+    <button class="button" id="startBtn">
+      Começar diagnóstico →
+    </button>
+
+    <p class="muted" style="text-align:center">
+      Gratuito • Sem cadastro • Cerca de 1 minuto
+    </p>
+
+  </section>
+
+  <!-- PERGUNTAS -->
+  <section class="card hidden" id="quiz">
+
+    <div class="progress-info">
+      <span>Seu diagnóstico</span>
+      <span id="stepLabel">1 de 5</span>
+    </div>
+
+    <div class="progress">
+      <div class="progress-fill"
+           id="progressFill"></div>
+    </div>
+
+    <div class="eyebrow">
+      Vamos entender seu negócio
+    </div>
+
+    <h2 id="questionTitle"></h2>
+
+    <div class="options" id="options"></div>
+
+    <button class="button secondary" id="backBtn">
+      ← Voltar
+    </button>
+
+  </section>
+
+  <!-- RESULTADO -->
+  <section class="card hidden" id="result">
+
+    <div class="eyebrow">
+      Diagnóstico concluído
+    </div>
+
+    <h1>Seu resultado está pronto!</h1>
+
+    <p>
+      Com base nas suas respostas,
+      identificamos um ponto de atenção
+      no atendimento da sua empresa.
+    </p>
+
+    <div class="result-box">
+      <strong id="resultTitle"></strong>
+      <p id="resultDescription"></p>
+    </div>
+
+    <!-- PLANO RECOMENDADO -->
+    <div class="plan-card">
+
+      <span class="plan-badge">
+        PLANO RECOMENDADO PARA VOCÊ
+      </span>
+
+      <div class="plan-name" id="planName"></div>
+
+      <div class="plan-price">
+        <span id="planPrice"></span>
+        <small>/mês</small>
+      </div>
+
+      <p class="plan-reason" id="planReason"></p>
+
+      <ul class="features" id="planFeatures"></ul>
+
+      <p class="notice">
+        Sem fidelidade. Cancele quando quiser,
+        sem multa.
+      </p>
+
+    </div>
+
+    <button class="button" id="plansBtn">
+      Conhecer meu plano →
+    </button>
+
+    <button class="button secondary" id="restartBtn">
+      Refazer diagnóstico
+    </button>
+
+    <p class="muted">
+      Recomendação inicial baseada nas respostas.
+      O volume real e as integrações necessárias
+      devem ser confirmados antes da contratação.
+    </p>
+
+  </section>
+
+  <div class="footer">
+    © TapBack • Diagnóstico informativo<br>
+    As respostas não são enviadas automaticamente
+    para o WhatsApp.
+  </div>
+
+</main>
+
+<script>
+
+// A landing page deve estar na mesma pasta.
+const LANDING_PAGE = "./index.html";
+
+const questions = [
+  {
+    title: "Qual é o tipo da sua empresa?",
+    options: [
+      "Encanamento ou desentupidora",
+      "Guincho ou assistência automotiva",
+      "Eletricista ou assistência técnica",
+      "Outro tipo de serviço"
+    ]
+  },
+  {
+    title: "Como os clientes entram em contato?",
+    options: [
+      "Principalmente por ligação",
+      "Principalmente pelo WhatsApp",
+      "Por ligação e WhatsApp",
+      "Por outros canais"
+    ]
+  },
+  {
+    title: "Qual é sua maior dificuldade no atendimento?",
+    options: [
+      "Ligações que não consigo atender",
+      "Mensagens que ficam sem resposta",
+      "Demora para responder clientes",
+      "Todas essas situações"
+    ]
+  },
+  {
+    title: "Quantos contatos podem ficar sem resposta por semana?",
+    options: [
+      "De 1 a 5",
+      "De 6 a 15",
+      "Mais de 15",
+      "Não sei informar"
+    ]
+  },
+  {
+    title: "Quando você gostaria de melhorar isso?",
+    options: [
+      "O quanto antes",
+      "Nos próximos 30 dias",
+      "Ainda estou pesquisando",
+      "Só quero conhecer o TapBack"
+    ]
+  }
+];
+
+const plans = {
+  essencial: {
+    name: "Essencial",
+    price: "R$ 97",
+    features: [
+      "Recuperação de ligações perdidas",
+      "Até 50 oportunidades por mês",
+      "1 número conectado",
+      "Mensagem automática padrão"
+    ]
+  },
+
+  profissional: {
+    name: "Profissional",
+    price: "R$ 197",
+    features: [
+      "Recuperação de ligações perdidas",
+      "Acompanhamento de WhatsApp sem resposta",
+      "Até 200 oportunidades por mês",
+      "Tempo de espera configurável",
+      "Mensagens personalizadas",
+      "Relatórios de acompanhamento"
+    ]
+  },
+
+  empresarial: {
+    name: "Empresarial",
+    price: "R$ 397",
+    features: [
+      "Tudo do plano Profissional",
+      "Até 600 oportunidades por mês",
+      "Até 3 números conectados",
+      "Relatórios mais completos",
+      "Configurações personalizadas",
+      "Suporte prioritário"
+    ]
+  }
+};
+
+let currentStep = 0;
+let answers = [];
+let recommendedPlan = "profissional";
+
+const intro = document.getElementById("intro");
+const quiz = document.getElementById("quiz");
+const result = document.getElementById("result");
+
+const questionTitle =
+  document.getElementById("questionTitle");
+
+const optionsContainer =
+  document.getElementById("options");
+
+const stepLabel =
+  document.getElementById("stepLabel");
+
+const progressFill =
+  document.getElementById("progressFill");
+
+const backBtn =
+  document.getElementById("backBtn");
+
+function showScreen(screen) {
+  intro.classList.add("hidden");
+  quiz.classList.add("hidden");
+  result.classList.add("hidden");
+
+  screen.classList.remove("hidden");
+
+  window.scrollTo(0, 0);
+}
+
+function renderQuestion() {
+  const question = questions[currentStep];
+
+  questionTitle.textContent = question.title;
+
+  stepLabel.textContent =
+    (currentStep + 1) + " de " + questions.length;
+
+  progressFill.style.width =
+    ((currentStep + 1) / questions.length * 100) + "%";
+
+  optionsContainer.innerHTML = "";
+
+  question.options.forEach(function(option) {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "option";
+    button.textContent = option;
+
+    button.addEventListener("click", function() {
+      answers[currentStep] = option;
+
+      if (currentStep < questions.length - 1) {
+        currentStep++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    optionsContainer.appendChild(button);
+  });
+
+  backBtn.style.display =
+    currentStep === 0 ? "none" : "block";
+}
+
+function getDiagnosis() {
+  const problem = answers[2];
+  const volume = answers[3];
+
+  let title = "";
+  let description = "";
+
+  if (problem === "Ligações que não consigo atender") {
+    title = "Atenção às ligações perdidas";
+
+    description =
+      "Ligações não atendidas podem representar " +
+      "oportunidades de contato esquecidas. " +
+      "Um retorno automático pode ajudar " +
+      "a retomar essas conversas.";
+  }
+
+  else if (problem === "Mensagens que ficam sem resposta") {
+    title = "Atenção ao WhatsApp";
+
+    description =
+      "Mensagens sem retorno podem fazer clientes " +
+      "procurarem outras empresas. Acompanhar " +
+      "contatos ainda não respondidos pode " +
+      "ajudar sua equipe a agir mais rápido.";
+  }
+
+  else if (problem === "Demora para responder clientes") {
+    title = "Seu tempo de resposta merece atenção";
+
+    description =
+      "A demora no atendimento pode prejudicar " +
+      "a experiência do cliente. Vale acompanhar " +
+      "os contatos que aguardam retorno.";
+  }
+
+  else {
+    title = "Seu atendimento tem vários pontos de atenção";
+
+    description =
+      "Você relatou dificuldades no atendimento. " +
+      "Organizar ligações e mensagens pode " +
+      "ajudar a reduzir oportunidades esquecidas.";
+  }
+
+  if (volume === "Mais de 15") {
+    description +=
+      " Como você indicou mais de 15 contatos " +
+      "possivelmente sem resposta por semana, " +
+      "vale avaliar seu volume mensal com atenção.";
+  }
+
+  return {
+    title: title,
+    description: description
+  };
+}
+
+function choosePlan() {
+  const channel = answers[1];
+  const problem = answers[2];
+  const volume = answers[3];
+
+  const needsWhatsApp =
+    channel === "Principalmente pelo WhatsApp" ||
+    channel === "Por ligação e WhatsApp" ||
+    problem === "Mensagens que ficam sem resposta" ||
+    problem === "Demora para responder clientes" ||
+    problem === "Todas essas situações";
+
+  // Faixas semanais são aproximadas.
+  // Mais de 15 por semana não significa,
+  // necessariamente, mais de 200 por mês.
+
+  if (volume === "Mais de 15") {
+    return {
+      key: "profissional",
+      reason:
+        "Você relatou um volume elevado de contatos " +
+        "sem resposta. O Profissional é uma indicação " +
+        "inicial por atender até 200 oportunidades " +
+        "mensais. Se o volume real ultrapassar " +
+        "esse limite, o Empresarial pode ser mais adequado."
+    };
+  }
+
+  if (volume === "De 6 a 15" && needsWhatsApp) {
+    return {
+      key: "profissional",
+      reason:
+        "Você relatou contatos sem resposta e " +
+        "necessidade de acompanhar o WhatsApp. " +
+        "O Profissional inclui esses recursos " +
+        "e até 200 oportunidades mensais."
+    };
+  }
+
+  if (needsWhatsApp) {
+    return {
+      key: "profissional",
+      reason:
+        "Como seu atendimento envolve WhatsApp " +
+        "ou demora nas respostas, o Profissional " +
+        "é mais indicado do que o Essencial, " +
+        "que atende somente ligações perdidas."
+    };
+  }
+
+  if (volume === "De 6 a 15") {
+    return {
+      key: "profissional",
+      reason:
+        "Você indicou entre 6 e 15 contatos " +
+        "sem resposta por semana. Isso pode " +
+        "ultrapassar o limite mensal de 50 " +
+        "oportunidades do Essencial."
+    };
+  }
+
+  if (volume === "Não sei informar") {
+    return {
+      key: "essencial",
+      reason:
+        "Como você relatou principalmente " +
+        "ligações perdidas, o Essencial pode " +
+        "ser um bom ponto de partida. " +
+        "Precisamos confirmar seu volume " +
+        "mensal antes da contratação."
+    };
+  }
+
+  return {
+    key: "essencial",
+    reason:
+      "Você relatou principalmente ligações " +
+      "perdidas e um volume inicial mais baixo. " +
+      "O Essencial pode atender essa necessidade, " +
+      "com até 50 oportunidades mensais."
+  };
+}
+
+function showResult() {
+  const diagnosis = getDiagnosis();
+  const recommendation = choosePlan();
+
+  recommendedPlan = recommendation.key;
+
+  const plan = plans[recommendedPlan];
+
+  document.getElementById("resultTitle")
+    .textContent = diagnosis.title;
+
+  document.getElementById("resultDescription")
+    .textContent = diagnosis.description;
+
+  document.getElementById("planName")
+    .textContent = plan.name;
+
+  document.getElementById("planPrice")
+    .textContent = plan.price;
+
+  document.getElementById("planReason")
+    .textContent = recommendation.reason;
+
+  const features =
+    document.getElementById("planFeatures");
+
+  features.innerHTML = "";
+
+  plan.features.forEach(function(feature) {
+    const li = document.createElement("li");
+    li.textContent = feature;
+    features.appendChild(li);
+  });
+
+  showScreen(result);
+}
+
+document.getElementById("startBtn")
+  .addEventListener("click", function() {
+    currentStep = 0;
+    answers = [];
+    renderQuestion();
+    showScreen(quiz);
+  });
+
+backBtn.addEventListener("click", function() {
+  if (currentStep > 0) {
+    currentStep--;
+    renderQuestion();
+  }
+});
+
+document.getElementById("restartBtn")
+  .addEventListener("click", function() {
+    currentStep = 0;
+    answers = [];
+    renderQuestion();
+    showScreen(quiz);
+  });
+
+document.getElementById("plansBtn")
+  .addEventListener("click", function() {
+
+    const params = new URLSearchParams();
+
+    params.set("origem", "quiz");
+    params.set("plano", recommendedPlan);
+
+    answers.forEach(function(answer, index) {
+      params.set("q" + (index + 1), answer);
+    });
+
+    window.location.href =
+      LANDING_PAGE + "?" +
+      params.toString() + "#planos";
+  });
+
+</script>
+
+</body>
+</html>
